@@ -18,12 +18,12 @@ import persistencia.sispront.dao;
 public class retiradadao extends dao{
     public void gravar (retirada r) throws Exception{
         Conexao();
-        String sql = "insert into retirada_prontuario (codfunc, codpront, data, hora) values (?, ?, ?, ?)";
+        String sql = "insert into retirada_prontuario (codfunc, codpront, data, hora) values (?, ?, DATE_FORMAT(NOW(),'%d/%m/%Y'), CURTIME())";
         stmt1 = con.prepareStatement(sql);
         stmt1.setInt(1, r.getCodfunc());
         stmt1.setInt(2, r.getCodpront());
-        stmt1.setString(3, r.getDt());
-        stmt1.setString(4, r.getHr());
+        //stmt1.setString(3, r.getDt());
+        //stmt1.setString(4, r.getHr());
 
         stmt1.executeUpdate();
         stmt1.close();
